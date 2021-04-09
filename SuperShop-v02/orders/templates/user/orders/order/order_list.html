@@ -1,0 +1,21 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Orders
+{% endblock title %}
+
+{% block content %}
+<div class="order_list">
+<h2>Orders:</h2>
+  <ul>
+    {% for order in user_orders %}
+      <li><h3>
+        <a href="{% url 'orders:order_detail' order.id %}">{{ order }}</a>
+        {{ order.created }}
+      </h3></li>
+    {% empty %}
+      <li><h3>There is no orders.</h3></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

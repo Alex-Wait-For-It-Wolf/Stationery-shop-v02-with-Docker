@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Sign Up Page{% endblock title %}
+
+{% block content %}
+  <div class="accounts">
+    <p>Create new account</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="second-btn" type="submit">Register</button>
+    </form>
+  </div>
+{% endblock content %}

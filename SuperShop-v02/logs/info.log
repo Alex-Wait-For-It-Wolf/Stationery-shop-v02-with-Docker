@@ -1,0 +1,1 @@
+2021-03-28 13:30:02.842 | INFO     | shop.views:product_list:35 - something debbug info, object list =<TranslatableQuerySet [<Product: Green>, <Product: apple>, <Product: banana>, <Product: black>, <Product: crazy long coffe name with something and everything>, <Product: cucumber>, <Product: espresso>, <Product: late>, <Product: tomato>]>

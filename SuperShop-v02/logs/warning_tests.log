@@ -1,0 +1,2 @@
+2021-03-28 13:30:02.850 | WARNING  | shop.views:product_list:36 - some warning test <TranslatableQuerySet [<Category: coffee>, <Category: tea>, <Category: vegetables>, <Category: fruits>, <Category: some very long and crazy category just to test this crazy shit>]>
+2021-03-28 13:30:02.858 | WARNING  | cart.cart:__init__:35 - cart init {'5': {'quantity': 11, 'price': '8.00'}}

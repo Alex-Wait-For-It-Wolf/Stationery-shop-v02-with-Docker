@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Reactivate your account{% endblock title %}
+
+{% block content %}
+<h1>Activate your account</h1>
+  <div class="accounts">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="second-btn" type="submit">Resend</button>
+    </form>
+  </div>
+{% endblock content %}
