@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  web:
+    restart: on-failure
+    build:
+      context: ./SuperShop-v02
+      dockerfile: Dockerfile.prod01
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/abraham_linc/web_app/static
+      - media_volume:/home/abraham_linc/web_app/media
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - db
+
+  db:
+    restart: on-failure
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+
+  nginx:
+    restart: on-failure
+    build: ./nginx
+    volumes:
+      - static_volume:/home/abraham_linc/web_app/static
+      - media_volume:/home/abraham_linc/web_app/media
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
+  redis:
+    restart: on-failure
+    image: redis:latest
+    volumes:
+      - redisdata:/data
+    env_file:
+      - ./.env.prod.redis.db
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  redisdata:
