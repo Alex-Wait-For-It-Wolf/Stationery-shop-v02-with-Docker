@@ -1,0 +1,4 @@
+# requirements/development.txt
+-r _base.txt
+ipython==7.19.0
+ipython-genutils==0.2.0
