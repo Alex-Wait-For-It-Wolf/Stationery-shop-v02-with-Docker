@@ -3,13 +3,13 @@ FROM python:3.7-alpine as base
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-COPY requirements.txt requirements.txt ./
+COPY /requirements/_base.txt /requirements/production.txt ./
 RUN apk add --update --no-cache --virtual .build-deps \
     postgresql-dev gcc python3-dev musl-dev cairo \
     cairo-tools \ 
     jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev \ 
     tcl-dev libffi-dev cairo-dev pango-dev gdk-pixbuf \
-    && pip install --no-cache-dir -r requirements.txt 
+    && pip install --no-cache-dir -r production.txt 
 
 # Now multistage builds
 FROM python:3.7-alpine
@@ -36,7 +36,7 @@ COPY --from=base /usr/local/bin/ /usr/local/bin/
 ENV PYTHONPATH /home/abraham_linc/web_app:$PYTHONPATH
 
 # copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $APP_HOME
+# COPY ./entrypoints/entrypoint.prod.sh $APP_HOME
 
 # copy project
 COPY . $APP_HOME
@@ -47,4 +47,4 @@ RUN chown -R abraham_linc:abraham_linc $APP_HOME
 # change to the abraham_linc user
 USER abraham_linc
 
-ENTRYPOINT ["/home/abraham_linc/web_app/entrypoint.prod.sh"]
+ENTRYPOINT ["/home/abraham_linc/web_app/entrypoints/entrypoint.prod.sh"]
