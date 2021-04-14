@@ -21,7 +21,7 @@ def product_list(request, category_slug=None):
     object_list = (Product
                    .objects
                    .filter(available=True)
-                   .order_by('translations__name'))
+                   .order_by('id'))
     if category_slug:
         language = request.LANGUAGE_CODE
         category = get_object_or_404(Category,
@@ -30,7 +30,7 @@ def product_list(request, category_slug=None):
         object_list = (object_list
                        .filter(available=True)
                        .filter(category=category)
-                       .order_by('translations__name'))
+                       .order_by('id'))
 
     cart_product_form = CartAddProductForm()
     paginator = Paginator(object_list, 5)
