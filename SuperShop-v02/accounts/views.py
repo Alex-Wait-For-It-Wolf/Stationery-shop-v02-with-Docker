@@ -75,11 +75,13 @@ class ResendActivationEmailLink(View):
 
             user = _get_user_by_email_from_the_form(form)
 
+            current_site = get_current_site(request)
+            current_site_domain = current_site.domain
             subject = 'Activate Your Account'
             message_template = 'accounts/account_activation_email.html'
 
-            _create_and_send_message_to_email(request, user, subject,
-                                              message_template)
+            _create_and_send_message_to_email(current_site_domain, user,
+                                              subject, message_template)
 
             return render(request, 'accounts/account_activation_message.html')
         return render(request, self.template_name, {'form': form})
