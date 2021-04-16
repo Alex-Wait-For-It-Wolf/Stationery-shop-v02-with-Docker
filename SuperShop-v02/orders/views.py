@@ -79,7 +79,10 @@ def order_list(request):
 def order_detail(request, order_id):
     """Show a single topic and all its entries."""
     order = get_object_or_404(Order, id=order_id)
-    _check_order_payer(order.payer, request)
-    return render(request,
-                  'user/orders/order/order_detail.html',
-                  {'order': order})
+    order_payer = _check_order_payer(order.payer, request)
+    if order_payer == False:
+        return redirect('orders:order_list')
+    else:
+        return render(request,
+                      'user/orders/order/order_detail.html',
+                      {'order': order})

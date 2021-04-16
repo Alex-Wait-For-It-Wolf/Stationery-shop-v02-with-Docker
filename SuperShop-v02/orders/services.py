@@ -7,7 +7,7 @@ from loguru import logger
 def _check_order_payer(payer, request):
     """Check if logged user match requested order."""
     if payer != request.user:
-        raise Http404
+        return False
 
 @logger.catch
 def _check_cart_length_greater_than_zero(cart):
