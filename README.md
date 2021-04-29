@@ -34,12 +34,12 @@ CREATE EXTENSION pg_trgm;
 ```
 api endpoints:
 
-you domain/en/api/shop/categories/
+your domain/en/api/shop/categories/
 
-you domain/en/api/shop/products/
+your domain/en/api/shop/products/
 
-you domain/en/api/shop/products/<product_id>/
+your domain/en/api/shop/products/<product_id>/
 
-you domain/en/api/orders/order_list/
+your domain/en/api/orders/order_list/
 
 ## Remember, if you want to use this build in production, change values in env_files/.env.prod and env_files/.env.prod.db, because current values just for test, do not expose your .env files to anyone.
